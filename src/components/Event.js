@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { DELETE_EVENT } from '../actions';
+import AppContext from '../contexts/AppContext';
 
-const Event = ({ dispatch, event }) => {
+const Event = ({ event }) => {
+  // useContext
+  const { dispatch } = useContext(AppContext);
+
   const id = event.id;
 
   // 削除

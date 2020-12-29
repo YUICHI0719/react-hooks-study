@@ -23,6 +23,18 @@ const App = () => {
     setBody('');
   };
 
+  // 全てのTODOを削除
+  const deleteAllEvent = (e) => {
+    e.preventDefault();
+    const result = window.confirm(
+      '全てのTODOを本当に削除してもよろしいでしょうか？'
+    );
+    if (result) dispatch({ type: 'DELETE_ALL_EVENTS' });
+  };
+
+  // 作成ボタンのdisabled制御
+  const unCreatable = title === '' || body === '';
+
   return (
     <div className='container'>
       <h4>TODO管理</h4>
@@ -45,10 +57,20 @@ const App = () => {
             onChange={(e) => setBody(e.target.value)}
           />
         </div>
-        <button className='btn btn-primary' onClick={addEvent}>
+        <button
+          className='btn btn-primary'
+          onClick={addEvent}
+          disabled={unCreatable}
+        >
           TODOを作成する
         </button>
-        <button className='btn btn-danger'>全てのTODOを削除する</button>
+        <button
+          className='btn btn-danger'
+          onClick={deleteAllEvent}
+          disabled={state.length === 0}
+        >
+          全てのTODOを削除する
+        </button>
       </form>
 
       <h4>TODO 一覧</h4>

@@ -5,10 +5,15 @@ const Event = ({ dispatch, event }) => {
 
   // 削除
   const handleClickDeleteButton = () => {
-    dispatch({
-      type: 'DELETE_EVENT',
-      id: id,
-    });
+    const result = window.confirm(
+      `ID:${id} のTODOを削除します。よろしいでしょうか？`
+    );
+    if (result) {
+      dispatch({
+        type: 'DELETE_EVENT',
+        id: id,
+      });
+    }
   };
 
   return (

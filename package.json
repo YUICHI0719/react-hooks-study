@@ -9,7 +9,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "3.0.1"
   },
-  "homepage": "http://hooks-todo-management.github.io/myapp",
+  "homepage": "https://yuichi0719.github.io/react-hooks-study/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

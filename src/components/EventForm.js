@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions';
+
 const EventForm = ({ state, dispatch }) => {
   // useState
   const [title, setTitle] = useState('');
@@ -9,7 +11,7 @@ const EventForm = ({ state, dispatch }) => {
   const addEvent = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'CREATE_EVENT',
+      type: CREATE_EVENT,
       title: title,
       body: body,
     });
@@ -23,7 +25,7 @@ const EventForm = ({ state, dispatch }) => {
     const result = window.confirm(
       '全てのTODOを本当に削除してもよろしいでしょうか？'
     );
-    if (result) dispatch({ type: 'DELETE_ALL_EVENTS' });
+    if (result) dispatch({ type: DELETE_ALL_EVENTS });
   };
 
   // 作成ボタンのdisabled制御

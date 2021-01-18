@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import { DELETE_EVENT } from '../actions';
-import AppContext from '../contexts/AppContext';
+import { DELETE_EVENT } from "../actions";
+import AppContext from "../contexts/AppContext";
 
 const Event = ({ event }) => {
   // useContext
@@ -29,8 +29,8 @@ const Event = ({ event }) => {
       <td>{event.body}</td>
       <td>
         <button
-          type='button'
-          className='btn btn-danger'
+          type="button"
+          className="btn btn-danger"
           onClick={handleClickDeleteButton}
         >
           削除

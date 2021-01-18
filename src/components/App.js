@@ -10,6 +10,7 @@ const App = () => {
   // stateの初期値を変数化
   const initialState = {
     events: [],
+    operationLogs: [],
   };
 
   // useReducer

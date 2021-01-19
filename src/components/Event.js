@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 
-import { DELETE_EVENT } from "../actions";
+import { DELETE_EVENT, ADD_OPERATION_LOGS } from "../actions";
 import AppContext from "../contexts/AppContext";
+import { timeCurrentIso8601 } from "../utils";
 
 const Event = ({ event }) => {
   // useContext
@@ -9,7 +10,7 @@ const Event = ({ event }) => {
 
   const id = event.id;
 
-  // 削除
+  // クリックしたTODOを削除
   const handleClickDeleteButton = () => {
     const result = window.confirm(
       `ID:${id} のTODOを削除します。よろしいでしょうか？`
@@ -18,6 +19,11 @@ const Event = ({ event }) => {
       dispatch({
         type: DELETE_EVENT,
         id: id,
+      });
+      dispatch({
+        type: ADD_OPERATION_LOGS,
+        description: `ID:${id} のTODOを削除しました。`,
+        operatedAt: timeCurrentIso8601(),
       });
     }
   };

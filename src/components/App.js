@@ -7,9 +7,11 @@ import OperationLogs from "./OperationLogs";
 import reducer from "../reducers/index";
 import AppContext from "../contexts/AppContext";
 
+const APP_KEY = "appWithRedux";
+
 const App = () => {
   // stateの初期値を変数化(localStorageに値がある場合は格納)
-  const appState = localStorage.getItem("appWithRedux");
+  const appState = localStorage.getItem(APP_KEY);
   const initialState = appState
     ? JSON.parse(appState)
     : {
@@ -21,7 +23,7 @@ const App = () => {
 
   // useEffect
   useEffect(() => {
-    localStorage.setItem("appWithRedux", JSON.stringify(state));
+    localStorage.setItem(APP_KEY, JSON.stringify(state));
   }, [state]);
 
   return (

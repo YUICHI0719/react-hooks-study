@@ -1,7 +1,13 @@
 import React, { useState, useContext } from "react";
 
-import { CREATE_EVENT, DELETE_ALL_EVENTS } from "../actions";
+import {
+  CREATE_EVENT,
+  DELETE_ALL_EVENTS,
+  ADD_OPERATION_LOGS,
+  DELETE_ALL_OPERATION_LOGS,
+} from "../actions";
 import AppContext from "../contexts/AppContext";
+import { timeCurrentIso8601 } from "../utils";
 
 const EventForm = () => {
   // useContext
@@ -18,6 +24,11 @@ const EventForm = () => {
       title: title,
       body: body,
     });
+    dispatch({
+      type: ADD_OPERATION_LOGS,
+      description: "TODOを作成しました。",
+      operatedAt: timeCurrentIso8601(),
+    });
     setTitle("");
     setBody("");
   };
@@ -28,7 +39,14 @@ const EventForm = () => {
     const result = window.confirm(
       "全てのTODOを本当に削除してもよろしいでしょうか？"
     );
-    if (result) dispatch({ type: DELETE_ALL_EVENTS });
+    if (result) {
+      dispatch({ type: DELETE_ALL_EVENTS });
+      dispatch({
+        type: ADD_OPERATION_LOGS,
+        description: "全てのTODOを削除しました。",
+        operatedAt: timeCurrentIso8601(),
+      });
+    }
   };
 
   // 作成ボタンのdisabled制御

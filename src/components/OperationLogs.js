@@ -1,26 +1,25 @@
 import React, { useContext } from "react";
 
-import Event from "./Event";
+import OperationLog from "./OperationLog";
 import AppContext from "../contexts/AppContext";
 
-const Events = () => {
+const OperationLogs = () => {
   // useContext
   const { state } = useContext(AppContext);
 
   return (
     <>
-      <h4>TODO 一覧</h4>
+      <h4>操作ログ 一覧</h4>
       <table className="table table-hover">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>タイトル</th>
-            <th>詳細</th>
+            <th>操作内容</th>
+            <th>日時</th>
           </tr>
         </thead>
         <tbody>
-          {state.events.map((event, index) => (
-            <Event key={index} event={event} />
+          {state.operationLogs.map((operationLog, index) => (
+            <OperationLog key={index} operationLog={operationLog} />
           ))}
         </tbody>
       </table>
@@ -28,4 +27,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default OperationLogs;

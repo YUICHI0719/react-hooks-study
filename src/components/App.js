@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import EventForm from "./EventForm";
@@ -8,14 +8,21 @@ import reducer from "../reducers/index";
 import AppContext from "../contexts/AppContext";
 
 const App = () => {
-  // stateの初期値を変数化
-  const initialState = {
-    events: [],
-    operationLogs: [],
-  };
-
+  // stateの初期値を変数化(localStorageに値がある場合は格納)
+  const appState = localStorage.getItem("appWithRedux");
+  const initialState = appState
+    ? JSON.parse(appState)
+    : {
+        events: [],
+        operationLogs: [],
+      };
   // useReducer
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // useEffect
+  useEffect(() => {
+    localStorage.setItem("appWithRedux", JSON.stringify(state));
+  }, [state]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

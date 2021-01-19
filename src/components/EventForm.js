@@ -49,6 +49,17 @@ const EventForm = () => {
     }
   };
 
+  // 全ての操作ログを削除
+  const deleteAllOperationLogs = (e) => {
+    e.preventDefault();
+    const result = window.confirm(
+      "全ての操作ログを本当に削除してもよろしいでしょうか？"
+    );
+    if (result) {
+      dispatch({ type: DELETE_ALL_OPERATION_LOGS });
+    }
+  };
+
   // 作成ボタンのdisabled制御
   const unCreatable = title === "" || body === "";
 
@@ -87,6 +98,13 @@ const EventForm = () => {
           disabled={state.events.length === 0}
         >
           全てのTODOを削除する
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={deleteAllOperationLogs}
+          disabled={state.operationLogs.length === 0}
+        >
+          全ての操作ログを削除する
         </button>
       </form>
     </>
